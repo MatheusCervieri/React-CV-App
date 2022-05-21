@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid'; //npm i uuid
 import Education from "./components/Education";
+import StyleSheet from "./style.css"
 
 
 function App() {
@@ -35,14 +36,19 @@ function App() {
     setCountry(countryform.current.value);
   }
   return (
-    <div>
+    <div className="main">
+      <div>
+        <br></br>
       <Personaldetails nameform={nameform} emailform={emailform} cityform={cityform} countryform={countryform} onchangeform={generatecvbutton}/>
       <br></br>
       <Experience btnfun={setExperiencecomponents} experiencesarray={experiencecomponents}/>
       <br/>
       <Education btnfun={setEducationcomponents} array={educationcomponents} />
       <br></br>
+      </div>
+      <div>
       <Cvready name={name} email={email} city={city} country={country} experiencesarray={experiencecomponents} setArray={setExperiencecomponents} educationsarray={educationcomponents} setEducationArray={setEducationcomponents}/>
+      </div>
     </div>
   );
 }
