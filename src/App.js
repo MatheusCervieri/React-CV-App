@@ -5,7 +5,9 @@ import { useRef } from "react";
 import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid'; //npm i uuid
 import Education from "./components/Education";
-import StyleSheet from "./style.css"
+import StyleSheet from "./style.css";
+import { useEffect } from "react"; 
+
 
 
 function App() {
@@ -13,7 +15,7 @@ function App() {
   const emailform = useRef();
   const cityform = useRef();
   const countryform = useRef();
-
+ 
   const [name, setName] = useState("Write your name!");
   const [email, setEmail] = useState("Write your email!");
   const [city, setCity] = useState("Write your city!");
@@ -35,6 +37,22 @@ function App() {
     setCity(cityform.current.value);
     setCountry(countryform.current.value);
   }
+
+  const LOCAL_STORAGE_KEY = "cvapp.experiences";
+
+  //Load saved data when initialized.  
+  useEffect( () => {
+
+    const storedexperiences = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+    if (storedexperiences) setExperiencecomponents(storedexperiences);
+  }, []);
+
+  
+  useEffect( () => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(experiencecomponents));
+  }, [experiencecomponents]);
+
+
   return (
     <div className="main">
       <div>
