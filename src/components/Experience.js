@@ -1,8 +1,27 @@
-import React from 'react'
+import React from 'react';
+import { useRef } from 'react';
+import { v4 as uuidv4 } from 'uuid'; //npm i uuid
 
 export default function Experience(props) {
+  const name = useRef("");
+  const descripton = useRef("");
+  const startdate = useRef();
+  const enddate = useRef();
+  const checkbox = useRef();
+
     function addexperience(){
-        props.btnfun([]);
+      let realenddate = enddate.current.value;
+      if(checkbox.current.checked == true)
+      {
+        realenddate = "I am steel doing this project";
+      }
+        props.btnfun(prevexperiences => {
+          return [...prevexperiences, {id: uuidv4(), name: name.current.value, 
+          descripition: descripton.current.value,
+          startdate: startdate.current.value,
+          enddate: realenddate
+          }]
+        });
         /*
         const name = form1.current.value;
         setArraytodos(prevtodos => {
@@ -15,13 +34,14 @@ export default function Experience(props) {
     <div>
         <h1>Experience</h1>
         <div>Experience Name</div>
-        <input type="text"></input>
+        <input ref={name} type="text"></input>
         <div>Experience Description</div>
-        <input type="text"></input>
+        <input ref={descripton} type="text"></input>
         <div>Experience Start Date</div>
-        <input type="date"></input>
+        <input ref={startdate} type="date"></input>
         <div>End Date</div>
-        <input type="date"></input>
+        <input ref={enddate} type="date"></input>
+        <div>Not finished  <input ref={checkbox} type="checkbox"></input></div>
         <br/>
         <br/>
         <button onClick={addexperience}>Add Experience</button>

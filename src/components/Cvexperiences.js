@@ -5,7 +5,7 @@ export default function Cvexperiences(props) {
  
     return (
         props.array.map(experience => {
-            return <Cvexperience key={experience.id} name={experience.name} description={experience.descripition} startdate={experience.startdate} enddate={experience.enddate} />
+            return <Cvexperience key={experience.id} id={experience.id} name={experience.name} description={experience.descripition} startdate={experience.startdate} enddate={experience.enddate} setArray={props.setArray}/>
         })
       )
   

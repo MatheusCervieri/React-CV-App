@@ -1,6 +1,13 @@
 import React from 'react'
 
-export default function Cvexperience({name , description, startdate, enddate}) {
+export default function Cvexperience({id, name , description, startdate, enddate, setArray}) {
+  function removeThisExperience(){
+    setArray(prevexpiriences =>{
+      const newarray = [...prevexpiriences];
+      const experienceswithoutthis = newarray.filter(experience => experience.id != id);
+      return experienceswithoutthis;
+    });
+  }
   return (
     <div>
     <div>
@@ -10,6 +17,8 @@ export default function Cvexperience({name , description, startdate, enddate}) {
     <br/>
     <div>Start date: {startdate}</div>
     <div>End Date: {enddate}</div>
+    <br></br>
+    <div><button onClick={removeThisExperience}>Remove Experience</button></div>
     </div>
   )
 }

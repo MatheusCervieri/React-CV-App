@@ -4,6 +4,7 @@ import Experience from "./components/Experience";
 import { useRef } from "react";
 import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid'; //npm i uuid
+import Education from "./components/Education";
 
 
 function App() {
@@ -22,6 +23,11 @@ function App() {
   startdate: "date",
   enddate: "date" }]);
 
+  const [educationcomponents, setEducationcomponents] = useState([{id: uuidv4(), name: "42 São Paulo", 
+  degree: "BSC of Science!",
+  startdate: "date",
+  enddate: "date" }]);
+
   function generatecvbutton(){
     setName(nameform.current.value);
     setEmail(emailform.current.value);
@@ -34,7 +40,9 @@ function App() {
       <br></br>
       <Experience btnfun={setExperiencecomponents} experiencesarray={experiencecomponents}/>
       <br/>
-      <Cvready name={name} email={email} city={city} country={country} experiencesarray={experiencecomponents}/>
+      <Education btnfun={setEducationcomponents} array={educationcomponents} />
+      <br></br>
+      <Cvready name={name} email={email} city={city} country={country} experiencesarray={experiencecomponents} setArray={setExperiencecomponents} educationsarray={educationcomponents} setEducationArray={setEducationcomponents}/>
     </div>
   );
 }
