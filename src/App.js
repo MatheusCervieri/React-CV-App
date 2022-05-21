@@ -39,19 +39,25 @@ function App() {
   }
 
   const LOCAL_STORAGE_KEY = "cvapp.experiences";
+  const LOCAL_STORAGE_KEY2 = "cvapp.educations"; 
 
   //Load saved data when initialized.  
   useEffect( () => {
 
     const storedexperiences = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
     if (storedexperiences) setExperiencecomponents(storedexperiences);
+    const educationcomponents = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY2));
+    if(educationcomponents) setEducationcomponents(educationcomponents);
   }, []);
 
-  
+  //Save the data from de objects. 
   useEffect( () => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(experiencecomponents));
   }, [experiencecomponents]);
 
+  useEffect ( () => {
+    localStorage.setItem(LOCAL_STORAGE_KEY2, JSON.stringify(educationcomponents));
+  }, [educationcomponents])
 
   return (
     <div className="main">
